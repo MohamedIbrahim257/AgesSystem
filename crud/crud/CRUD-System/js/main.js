@@ -1,5 +1,5 @@
-var productName = document.getElementById("product-name"),
-    productCategory = document.getElementById("product-category"),
+var productName = document.getElementById("student-name"),
+    phoneNumber = document.getElementById("phone-number"),
     productPrice = document.getElementById("product-price"),
     productDescription = document.getElementById("product-description"),
     addBtn = document.getElementById("add-btn"),
@@ -33,7 +33,7 @@ addBtn.onclick = function () {
 
   if(
     productName.value == "" || 
-    productCategory.value == "" || 
+    phoneNumber.value == "" || 
     productPrice.value == "" || 
     productDescription.value == ""
     ) {
@@ -65,7 +65,7 @@ function addProduct() {
 
   if(
     validateProductName() == true &&
-    validateProductCategory() == true &&
+    validatephoneNumber() == true &&
     validateProductPrice() == true &&
     validateProductDescription() == true
   ) {
@@ -73,7 +73,7 @@ function addProduct() {
     var product = {
 
       name: productName.value,
-      category: productCategory.value,
+      category: phoneNumber.value,
       price: productPrice.value,
       description: productDescription.value,
     };
@@ -119,8 +119,8 @@ function resetForm() {
   PNameAlert.classList.remove("d-block");
   PNameAlert.classList.add("d-none");
 
-  productCategory.classList.remove("is-valid");
-  productCategory.classList.remove("is-invalid");
+  phoneNumber.classList.remove("is-valid");
+  phoneNumber.classList.remove("is-invalid");
   PCategoryAlert.classList.remove("d-block");
   PCategoryAlert.classList.add("d-none");
 
@@ -150,7 +150,7 @@ function updateProduct(index) {
   addBtn.innerHTML = "Update Product";
 
   productName.value = productTable[index].name;
-  productCategory.value = productTable[index].category;
+  phoneNumber.value = productTable[index].category;
   productPrice.value = productTable[index].price;
   productDescription.value = productTable[index].description;
 
@@ -164,12 +164,12 @@ function submitEditProduct(currentIndex) {
 
   if(
     validateProductName() == true &&
-    validateProductCategory() == true &&
+    validatephoneNumber() == true &&
     validateProductPrice() == true &&
     validateProductDescription() == true
   ) {
     productTable[currentIndex].name = productName.value;
-    productTable[currentIndex].category = productCategory.value;
+    productTable[currentIndex].category = phoneNumber.value;
     productTable[currentIndex].price = productPrice.value;
     productTable[currentIndex].description = productDescription.value;
   }
@@ -210,7 +210,7 @@ searchText.onkeyup = function () {
 
 // ************** Validation ************
 
-// 1 -- Validate Product Name Function:
+// 1 -- Validate Name Function:
 function validateProductName() {
 
   var regex = /^[A-Z][a-z A-z 0-9]{2,}$/;
@@ -265,14 +265,14 @@ productName.addEventListener("blur", checkDuplicatedNames);
 
 
 // 2 -- Validate Product Category Function:
-function validateProductCategory() {
+function validatephoneNumber() {
 
-  var regex = /^[a-z A-Z 0-9]{5,}$/;
+  var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-  if (regex.test(productCategory.value) == true) {
+  if (regex.test(phoneNumber.value) == true) {
 
-    productCategory.classList.add("is-valid");
-    productCategory.classList.remove("is-invalid");
+    phoneNumber.classList.add("is-valid");
+    phoneNumber.classList.remove("is-invalid");
 
     PCategoryAlert.classList.add("d-none");
     PCategoryAlert.classList.remove("d-block");
@@ -282,8 +282,8 @@ function validateProductCategory() {
     return true;
 
   } else {
-    productCategory.classList.add("is-invalid");
-    productCategory.classList.remove("is-valid");
+    phoneNumber.classList.add("is-invalid");
+    phoneNumber.classList.remove("is-valid");
 
     PCategoryAlert.classList.add("d-block");
     PCategoryAlert.classList.remove("d-none");
@@ -294,7 +294,7 @@ function validateProductCategory() {
   }
 };
 
-productCategory.addEventListener("keyup", validateProductCategory);
+phoneNumber.addEventListener("keyup", validatephoneNumber);
 
 
 // 3 -- Validate Product Price Function:

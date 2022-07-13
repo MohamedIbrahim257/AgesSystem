@@ -1,7 +1,7 @@
 var productName = document.getElementById("student-name"),
     phoneNumber = document.getElementById("phone-number"),
     ageNumber = document.getElementById("age-number"),
-    productDescription = document.getElementById("product-description"),
+    city = document.getElementById("city"),
     addBtn = document.getElementById("add-btn"),
     emptyAlert = document.getElementById("empty-input-alert"),
     inputs = document.getElementsByClassName("form-control"),
@@ -9,8 +9,8 @@ var productName = document.getElementById("student-name"),
     displayTableHref = document.getElementById("display-table-href"),
     PNameAlert = document.getElementById("PNameAlert"),
     PAgeAlert = document.getElementById("PAgeAlert"),
-    PCategoryAlert = document.getElementById("PCategoryAlert"),
-    PDescriptionAlert = document.getElementById("PDescriptionAlert"),
+    PPhoneAlert = document.getElementById("PPhoneAlert"),
+    PCityAlert = document.getElementById("PCity-Alert"),
     logOutBtn = document.getElementById("logOutBtn"),
     productTable = [],
     currentIndex;
@@ -35,7 +35,7 @@ addBtn.onclick = function () {
     productName.value == "" || 
     phoneNumber.value == "" || 
     ageNumber.value == "" || 
-    productDescription.value == ""
+    city.value == ""
     ) {
 
     emptyAlert.innerHTML = "Please Fill In Required Info and Try Again!";
@@ -67,15 +67,15 @@ function addProduct() {
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validateProductDescription() == true
+    validatecity() == true
   ) {
 
     var product = {
 
       name: productName.value,
       category: phoneNumber.value,
-      price: ageNumber.value,
-      description: productDescription.value,
+      age: ageNumber.value,
+      description: city.value,
     };
 
     productTable.push(product);
@@ -129,10 +129,10 @@ function resetForm() {
   PPriceAlert.classList.remove("d-block");
   PPriceAlert.classList.add("d-none");
 
-  productDescription.classList.remove("is-invalid");
-  productDescription.classList.remove("is-valid");
-  PDescriptionAlert.classList.remove("d-block");
-  PDescriptionAlert.classList.add("d-none");
+  city.classList.remove("is-invalid");
+  city.classList.remove("is-valid");
+  PCityAlert.classList.remove("d-block");
+  PCityAlert.classList.add("d-none");
 };
 
 
@@ -152,7 +152,7 @@ function updateProduct(index) {
   productName.value = productTable[index].name;
   phoneNumber.value = productTable[index].category;
   ageNumber.value = productTable[index].price;
-  productDescription.value = productTable[index].description;
+  city.value = productTable[index].description;
 
   currentIndex = index;
 };
@@ -166,12 +166,12 @@ function submitEditProduct(currentIndex) {
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validateProductDescription() == true
+    validatecity() == true
   ) {
     productTable[currentIndex].name = productName.value;
     productTable[currentIndex].category = phoneNumber.value;
     productTable[currentIndex].price = ageNumber.value;
-    productTable[currentIndex].description = productDescription.value;
+    productTable[currentIndex].description = city.value;
   }
 };
 
@@ -274,8 +274,8 @@ function validatephoneNumber() {
     phoneNumber.classList.add("is-valid");
     phoneNumber.classList.remove("is-invalid");
 
-    PCategoryAlert.classList.add("d-none");
-    PCategoryAlert.classList.remove("d-block");
+    PPhoneAlert.classList.add("d-none");
+    PPhoneAlert.classList.remove("d-block");
 
     addBtn.disabled = false;
 
@@ -285,8 +285,8 @@ function validatephoneNumber() {
     phoneNumber.classList.add("is-invalid");
     phoneNumber.classList.remove("is-valid");
 
-    PCategoryAlert.classList.add("d-block");
-    PCategoryAlert.classList.remove("d-none");
+    PPhoneAlert.classList.add("d-block");
+    PPhoneAlert.classList.remove("d-none");
 
     addBtn.disabled = true;
 
@@ -331,28 +331,28 @@ ageNumber.addEventListener("keyup", validateageNumber);
 
 
 // 4 -- Validate Product Description:
-function validateProductDescription() {
+function validatecity() {
 
   var regex = /^[a-z A-Z 0-9]{3,}$/;
 
-  if (regex.test(productDescription.value) == true) {
+  if (regex.test(city.value) == true) {
 
-    productDescription.classList.add("is-valid");
-    productDescription.classList.remove("is-invalid");
+    city.classList.add("is-valid");
+    city.classList.remove("is-invalid");
 
-    PDescriptionAlert.classList.add("d-none");
-    PDescriptionAlert.classList.remove("d-block");
+    PCityAlert.classList.add("d-none");
+    PCityAlert.classList.remove("d-block");
 
     addBtn.disabled = false;
 
     return true;
 
   } else {
-    productDescription.classList.add("is-invalid");
-    productDescription.classList.remove("is-valid");
+    city.classList.add("is-invalid");
+    city.classList.remove("is-valid");
 
-    PDescriptionAlert.classList.add("d-block");
-    PDescriptionAlert.classList.remove("d-none");
+    PCityAlert.classList.add("d-block");
+    PCityAlert.classList.remove("d-none");
 
     addBtn.disabled = true;
 
@@ -360,7 +360,7 @@ function validateProductDescription() {
   }
 };
 
-productDescription.addEventListener("keyup", validateProductDescription);
+city.addEventListener("keyup", validatecity);
 
 
 function logOut() {

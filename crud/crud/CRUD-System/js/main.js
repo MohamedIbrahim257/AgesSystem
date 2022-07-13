@@ -1,6 +1,6 @@
 var productName = document.getElementById("student-name"),
     phoneNumber = document.getElementById("phone-number"),
-    productPrice = document.getElementById("product-price"),
+    ageNumber = document.getElementById("age-number"),
     productDescription = document.getElementById("product-description"),
     addBtn = document.getElementById("add-btn"),
     emptyAlert = document.getElementById("empty-input-alert"),
@@ -8,7 +8,7 @@ var productName = document.getElementById("student-name"),
     searchText = document.getElementById("search-text"),
     displayTableHref = document.getElementById("display-table-href"),
     PNameAlert = document.getElementById("PNameAlert"),
-    PPriceAlert = document.getElementById("PPriceAlert"),
+    PAgeAlert = document.getElementById("PAgeAlert"),
     PCategoryAlert = document.getElementById("PCategoryAlert"),
     PDescriptionAlert = document.getElementById("PDescriptionAlert"),
     logOutBtn = document.getElementById("logOutBtn"),
@@ -34,7 +34,7 @@ addBtn.onclick = function () {
   if(
     productName.value == "" || 
     phoneNumber.value == "" || 
-    productPrice.value == "" || 
+    ageNumber.value == "" || 
     productDescription.value == ""
     ) {
 
@@ -66,7 +66,7 @@ function addProduct() {
   if(
     validateProductName() == true &&
     validatephoneNumber() == true &&
-    validateProductPrice() == true &&
+    validateageNumber() == true &&
     validateProductDescription() == true
   ) {
 
@@ -74,7 +74,7 @@ function addProduct() {
 
       name: productName.value,
       category: phoneNumber.value,
-      price: productPrice.value,
+      price: ageNumber.value,
       description: productDescription.value,
     };
 
@@ -124,8 +124,8 @@ function resetForm() {
   PCategoryAlert.classList.remove("d-block");
   PCategoryAlert.classList.add("d-none");
 
-  productPrice.classList.remove("is-valid");
-  productPrice.classList.remove("is-invalid");
+  ageNumber.classList.remove("is-valid");
+  ageNumber.classList.remove("is-invalid");
   PPriceAlert.classList.remove("d-block");
   PPriceAlert.classList.add("d-none");
 
@@ -151,7 +151,7 @@ function updateProduct(index) {
 
   productName.value = productTable[index].name;
   phoneNumber.value = productTable[index].category;
-  productPrice.value = productTable[index].price;
+  ageNumber.value = productTable[index].price;
   productDescription.value = productTable[index].description;
 
   currentIndex = index;
@@ -165,12 +165,12 @@ function submitEditProduct(currentIndex) {
   if(
     validateProductName() == true &&
     validatephoneNumber() == true &&
-    validateProductPrice() == true &&
+    validateageNumber() == true &&
     validateProductDescription() == true
   ) {
     productTable[currentIndex].name = productName.value;
     productTable[currentIndex].category = phoneNumber.value;
-    productTable[currentIndex].price = productPrice.value;
+    productTable[currentIndex].price = ageNumber.value;
     productTable[currentIndex].description = productDescription.value;
   }
 };
@@ -298,28 +298,28 @@ phoneNumber.addEventListener("keyup", validatephoneNumber);
 
 
 // 3 -- Validate Product Price Function:
-function validateProductPrice() {
+function validateageNumber() {
 
-  var regex = /^([1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|10000)$/;
+  var regex = /^100|[1-9]?\d$/;
 
-  if (regex.test(productPrice.value) == true) {
+  if (regex.test(ageNumber.value) == true) {
 
-    productPrice.classList.add("is-valid");
-    productPrice.classList.remove("is-invalid");
+    ageNumber.classList.add("is-valid");
+    ageNumber.classList.remove("is-invalid");
 
-    PPriceAlert.classList.add("d-none");
-    PPriceAlert.classList.remove("d-block");
+    PAgeAlert.classList.add("d-none");
+    PAgeAlert.classList.remove("d-block");
 
     addBtn.disabled = false;
 
     return true;
 
   } else {
-    productPrice.classList.add("is-invalid");
-    productPrice.classList.remove("is-valid");
+    ageNumber.classList.add("is-invalid");
+    ageNumber.classList.remove("is-valid");
 
-    PPriceAlert.classList.add("d-block");
-    PPriceAlert.classList.remove("d-none");
+    PAgeAlert.classList.add("d-block");
+    PAgeAlert.classList.remove("d-none");
 
     addBtn.disabled = true;
 
@@ -327,7 +327,7 @@ function validateProductPrice() {
   }
 };
 
-productPrice.addEventListener("keyup", validateProductPrice);
+ageNumber.addEventListener("keyup", validateageNumber);
 
 
 // 4 -- Validate Product Description:

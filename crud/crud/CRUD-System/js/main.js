@@ -2,6 +2,8 @@ var productName = document.getElementById("student-name"),
     phoneNumber = document.getElementById("phone-number"),
     ageNumber = document.getElementById("age-number"),
     city = document.getElementById("city"),
+    email = document.getElementById("email"),
+    ParentName = document.getElementById("Parent-name"),
     addBtn = document.getElementById("add-btn"),
     emptyAlert = document.getElementById("empty-input-alert"),
     inputs = document.getElementsByClassName("form-control"),
@@ -35,7 +37,9 @@ addBtn.onclick = function () {
     productName.value == "" || 
     phoneNumber.value == "" || 
     ageNumber.value == "" || 
-    city.value == ""
+    city.value == "" ||
+    email.value == "" ||
+    ParentName == ""
     ) {
 
     emptyAlert.innerHTML = "Please Fill In Required Info and Try Again!";
@@ -67,15 +71,17 @@ function addProduct() {
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validatecity() == true
+    validatecity() == true && 
+    validateEmail() == true 
   ) {
 
     var product = {
 
       name: productName.value,
-      category: phoneNumber.value,
+      phone: phoneNumber.value,
       age: ageNumber.value,
-      description: city.value,
+      city: city.value,
+      email : email.value
     };
 
     productTable.push(product);
@@ -91,9 +97,9 @@ function displayProduct() {
     newProduct += `<tr>
                     <td>${i}</td>
                     <td>${productTable[i].name}</td>
-                    <td>${productTable[i].category}</td>
-                    <td>${productTable[i].price}</td>
-                    <td>${productTable[i].description}</td>
+                    <td>${productTable[i].phone}</td>
+                    <td>${productTable[i].age}</td>
+                    <td>${productTable[i].city}</td>
                     <td>
                         <a href="#" class="text-decoration-none">
                             <i onclick="updateProduct(${i})" class="fas fa-edit text-green"></i>
@@ -133,6 +139,11 @@ function resetForm() {
   city.classList.remove("is-valid");
   PCityAlert.classList.remove("d-block");
   PCityAlert.classList.add("d-none");
+
+  email.classList.remove("is-invalid");
+  email.classList.remove("is-valid");
+  PEmailAlert.classList.remove("d-block");
+  PEmailAlert.classList.add("d-none");
 };
 
 
@@ -150,9 +161,10 @@ function updateProduct(index) {
   addBtn.innerHTML = "Update Product";
 
   productName.value = productTable[index].name;
-  phoneNumber.value = productTable[index].category;
-  ageNumber.value = productTable[index].price;
-  city.value = productTable[index].description;
+  phoneNumber.value = productTable[index].phone;
+  ageNumber.value = productTable[index].age;
+  city.value = productTable[index].city;
+  email.value = productTable[index].email;
 
   currentIndex = index;
 };
@@ -166,12 +178,14 @@ function submitEditProduct(currentIndex) {
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validatecity() == true
+    validatecity() == true && 
+    validateEmail() == true 
   ) {
     productTable[currentIndex].name = productName.value;
-    productTable[currentIndex].category = phoneNumber.value;
-    productTable[currentIndex].price = ageNumber.value;
-    productTable[currentIndex].description = city.value;
+    productTable[currentIndex].phone = phoneNumber.value;
+    productTable[currentIndex].age = ageNumber.value;
+    productTable[currentIndex].city = city.value;
+    productTable[currentIndex].email = email.value;
   }
 };
 
@@ -189,9 +203,9 @@ searchText.onkeyup = function () {
       newProduct += `<tr>
                     <td>${i}</td>
                     <td>${productTable[i].name}</td>
-                    <td>${productTable[i].category}</td>
-                    <td>${productTable[i].price}</td>
-                    <td>${productTable[i].description}</td>
+                    <td>${productTable[i].phone}</td>
+                    <td>${productTable[i].age}</td>
+                    <td>${productTable[i].city}</td>
                     <td>
                         <a href="#" class="text-decoration-none">
                             <i onclick="updateProduct(${i})" class="fas fa-edit text-green mr-3"></i>
@@ -361,6 +375,40 @@ function validatecity() {
 };
 
 city.addEventListener("keyup", validatecity);
+
+
+
+function validateEmail() {
+
+  var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+  if (regex.test(email.value) == true) {
+
+    email.classList.add("is-valid");
+    email.classList.remove("is-invalid");
+
+    PEmailAlert.classList.add("d-none");
+    PEmailAlert.classList.remove("d-block");
+
+    addBtn.disabled = false;
+
+    return true;
+
+  } else {
+    email.classList.add("is-invalid");
+    email.classList.remove("is-valid");
+
+    PEmailAlert.classList.add("d-block");
+    PEmailAlert.classList.remove("d-none");
+
+    addBtn.disabled = true;
+
+    return false;
+  }
+};
+
+email.addEventListener("keyup", validateEmail);
+
 
 
 function logOut() {

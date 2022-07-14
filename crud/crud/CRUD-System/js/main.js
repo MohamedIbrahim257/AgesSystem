@@ -13,6 +13,7 @@ var productName = document.getElementById("student-name"),
     PAgeAlert = document.getElementById("PAgeAlert"),
     PPhoneAlert = document.getElementById("PPhoneAlert"),
     PCityAlert = document.getElementById("PCity-Alert"),
+    PParentAlert = document.getElementById("PParentAlert"),
     logOutBtn = document.getElementById("logOutBtn"),
     productTable = [],
     currentIndex;
@@ -39,7 +40,8 @@ addBtn.onclick = function () {
     ageNumber.value == "" || 
     city.value == "" ||
     email.value == "" ||
-    ParentName == ""
+    PParentAlert.value == ""
+  
     ) {
 
     emptyAlert.innerHTML = "Please Fill In Required Info and Try Again!";
@@ -72,7 +74,8 @@ function addProduct() {
     validatephoneNumber() == true &&
     validateageNumber() == true &&
     validatecity() == true && 
-    validateEmail() == true 
+    validateEmail() == true &&
+    validateParentName() == true
   ) {
 
     var product = {
@@ -81,7 +84,8 @@ function addProduct() {
       phone: phoneNumber.value,
       age: ageNumber.value,
       city: city.value,
-      email : email.value
+      email : email.value,
+      ParentName : ParentName.value
     };
 
     productTable.push(product);
@@ -144,6 +148,11 @@ function resetForm() {
   email.classList.remove("is-valid");
   PEmailAlert.classList.remove("d-block");
   PEmailAlert.classList.add("d-none");
+
+  ParentName.classList.remove("is-invalid");
+  ParentName.classList.remove("is-valid");
+  PParentAlert.classList.remove("d-block");
+  PParentAlert.classList.add("d-none");
 };
 
 
@@ -165,7 +174,7 @@ function updateProduct(index) {
   ageNumber.value = productTable[index].age;
   city.value = productTable[index].city;
   email.value = productTable[index].email;
-
+  ParentName.value = productTable[index].ParentName;
   currentIndex = index;
 };
 
@@ -179,13 +188,15 @@ function submitEditProduct(currentIndex) {
     validatephoneNumber() == true &&
     validateageNumber() == true &&
     validatecity() == true && 
-    validateEmail() == true 
+    validateEmail() == true &&
+    validateParentName() == true
   ) {
     productTable[currentIndex].name = productName.value;
     productTable[currentIndex].phone = phoneNumber.value;
     productTable[currentIndex].age = ageNumber.value;
     productTable[currentIndex].city = city.value;
     productTable[currentIndex].email = email.value;
+    productTable[currentIndex].ParentName = ParentName.value;
   }
 };
 
@@ -408,6 +419,40 @@ function validateEmail() {
 };
 
 email.addEventListener("keyup", validateEmail);
+
+
+
+function validateParentName() {
+
+  var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+  if (regex.test(ParentName.value) == true) {
+
+    ParentName.classList.add("is-valid");
+    ParentName.classList.remove("is-invalid");
+
+    PParentAlert.classList.add("d-none");
+    PParentAlert.classList.remove("d-block");
+
+    addBtn.disabled = false;
+
+    return true;
+
+  } else {
+    ParentName.classList.add("is-invalid");
+    ParentName.classList.remove("is-valid");
+
+    PParentAlert.classList.add("d-block");
+    PParentAlert.classList.remove("d-none");
+
+    addBtn.disabled = true;
+
+    return false;
+  }
+};
+
+ParentName.addEventListener("keyup", validateParentName);
+
 
 
 

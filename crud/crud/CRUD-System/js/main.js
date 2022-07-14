@@ -4,6 +4,7 @@ var productName = document.getElementById("student-name"),
     city = document.getElementById("city"),
     email = document.getElementById("email"),
     ParentName = document.getElementById("Parent-name"),
+    parentPhone= document.getElementById("parentPhone"),
     addBtn = document.getElementById("add-btn"),
     emptyAlert = document.getElementById("empty-input-alert"),
     inputs = document.getElementsByClassName("form-control"),
@@ -14,6 +15,7 @@ var productName = document.getElementById("student-name"),
     PPhoneAlert = document.getElementById("PPhoneAlert"),
     PCityAlert = document.getElementById("PCity-Alert"),
     PParentAlert = document.getElementById("PParentAlert"),
+    PParentPhoneAlert = document.getElementById("PParentPhoneAlert"),
     logOutBtn = document.getElementById("logOutBtn"),
     productTable = [],
     currentIndex;
@@ -40,7 +42,9 @@ addBtn.onclick = function () {
     ageNumber.value == "" || 
     city.value == "" ||
     email.value == "" ||
-    PParentAlert.value == ""
+    ParentName.value == "" ||
+    parentPhone.value == ""
+    
   
     ) {
 
@@ -75,7 +79,8 @@ function addProduct() {
     validateageNumber() == true &&
     validatecity() == true && 
     validateEmail() == true &&
-    validateParentName() == true
+    validateParentName() == true &&
+    validateParentNumber() == true
   ) {
 
     var product = {
@@ -85,7 +90,9 @@ function addProduct() {
       age: ageNumber.value,
       city: city.value,
       email : email.value,
-      ParentName : ParentName.value
+      ParentName : ParentName.value,
+      parentPhone: parentPhone.value
+
     };
 
     productTable.push(product);
@@ -153,6 +160,11 @@ function resetForm() {
   ParentName.classList.remove("is-valid");
   PParentAlert.classList.remove("d-block");
   PParentAlert.classList.add("d-none");
+
+  parentPhone.classList.remove("is-invalid");
+  parentPhone.classList.remove("is-valid");
+  PParentPhoneAlert.classList.remove("d-block");
+  PParentPhoneAlert.classList.add("d-none");
 };
 
 
@@ -175,6 +187,7 @@ function updateProduct(index) {
   city.value = productTable[index].city;
   email.value = productTable[index].email;
   ParentName.value = productTable[index].ParentName;
+  parentPhone.value = productTable[index].parentPhone
   currentIndex = index;
 };
 
@@ -189,7 +202,8 @@ function submitEditProduct(currentIndex) {
     validateageNumber() == true &&
     validatecity() == true && 
     validateEmail() == true &&
-    validateParentName() == true
+    validateParentName() == true &&
+    validateParentPhone () == true
   ) {
     productTable[currentIndex].name = productName.value;
     productTable[currentIndex].phone = phoneNumber.value;
@@ -197,6 +211,7 @@ function submitEditProduct(currentIndex) {
     productTable[currentIndex].city = city.value;
     productTable[currentIndex].email = email.value;
     productTable[currentIndex].ParentName = ParentName.value;
+    productTable[currentIndex].parentPhone = parentPhone.value;
   }
 };
 
@@ -452,6 +467,40 @@ function validateParentName() {
 };
 
 ParentName.addEventListener("keyup", validateParentName);
+
+
+
+
+function validateParentPhone() {
+
+  var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
+  if (regex.test(ParentName.value) == true) {
+
+    parentPhone.classList.add("is-valid");
+    parentPhone.classList.remove("is-invalid");
+
+    PParentPhoneAlert.classList.add("d-none");
+    PParentPhoneAlert.classList.remove("d-block");
+
+    addBtn.disabled = false;
+
+    return true;
+
+  } else {
+    parentPhone.classList.add("is-invalid");
+    parentPhone.classList.remove("is-valid");
+
+    PParentPhoneAlert.classList.add("d-block");
+    PParentPhoneAlert.classList.remove("d-none");
+
+    addBtn.disabled = true;
+
+    return false;
+  }
+};
+
+parentPhone.addEventListener("keyup", validateParentPhone);
 
 
 

@@ -52,7 +52,7 @@
           <label>Phone number</label> <span> * </span>
           <input type="number" id="phone-number" class="form-control" />
           <div class="alert alert-danger d-none" id="PPhoneAlert">
-            Product Category must contain minimum 5 letters, Can't contain special characters
+            Phone Number must contain minimum 9 Numbers, Can't contain special characters
           </div>
         </div>
 
@@ -342,17 +342,17 @@
 
         <div class="form-group">
           <label>Parent Phone</label> <span> * </span>
-          <input type="text" id="product-category" class="form-control" />
-          <div class="alert alert-danger d-none" id="PCategoryAlert">
-            Product Category must contain minimum 5 letters, Can't contain special characters
+          <input type="text" id="parentPhone" class="form-control" />
+          <div class="alert alert-danger d-none" id="PParentPhoneAlert">
+            Phone Number must contain minimum 9 Numbers, Can't contain special characters
           </div>
         </div>
 
         <div class="form-group">
           <label>Notes</label> <span> * </span>
-          <textarea class="form-control" id="product-description" rows="2"></textarea>
-          <div class="alert alert-danger d-none" id="PDescriptionAlert">
-            Product Description must contain minimum 3 letters, Can't contain special characters
+          <textarea class="form-control" id="notes" rows="2"></textarea>
+          <div class="alert alert-danger d-none" id="PnotesAlert">
+          
           </div>
 
         </div>
@@ -633,19 +633,32 @@
           </div>
         </div>
         <div class="form-group">
+          <label>Service</label> <span> * </span>
+           <div class="row">
+            <div class="col-md-6">
+              <select id="Degree" name="Degree" class="form-control">
+                <option value="Bachelor">Office Expensise</option>
+                <option value="Master">Translation</option>
+                <option value="PhD"></option>
+                <option value="Vocational Education">Vocational Education تعليم مهني</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <input type="text" id="product-category" class="form-control" />
+            </div>
+           </div>
+          <div class="alert alert-danger d-none" id="PPriceAlert">
+            Product Price must be in range 100 : 10,000 (Numbers Only)
+          </div>
+        </div>
+        <div class="form-group">
           <label>Installment</label> <span> * </span>
           <input type="number" id="product-price" class="form-control" />
           <div class="alert alert-danger d-none" id="PPriceAlert">
             Product Price must be in range 100 : 10,000 (Numbers Only)
           </div>
         </div>
-        <div class="form-group">
-          <label>Total Price</label> <span> * </span>
-          <input type="number" id="product-price" class="form-control" />
-          <div class="alert alert-danger d-none" id="PPriceAlert">
-            Product Price must be in range 100 : 10,000 (Numbers Only)
-          </div>
-        </div>
+
         <div class="form-group">
           <label>Discount</label> <span> * </span>
           <input type="number" id="product-price" class="form-control" />

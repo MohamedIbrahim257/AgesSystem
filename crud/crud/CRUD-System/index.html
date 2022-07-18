@@ -635,7 +635,7 @@
         <div class="form-group">
           <label>Service</label> <span> * </span>
            <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <select id="Service-option" name="Degree" class="form-control">
                 <option value="Office Expensise">Office Expensise</option>
                 <option value="Translation">Translation</option>
@@ -647,11 +647,11 @@
               </div>
     
             </div>
-            <div class="col-md-6">
-              <input id="service-input" type="text" id="Degree" class="form-control" />
+            <div class="col-md-7">
+              <input id="service-input" type="text" id="our-service" class="form-control" />
               <div class="py-2 d-flex" >
-                <p class="yalla px-2"></p>
-                <p class="select-value px-2"></p>
+                <div class="yalla px-2"></div>
+                <div class="select-value px-2"></div>
               </div>
             </div>
 
@@ -660,19 +660,31 @@
             Product Price must be in range 100 : 10,000 (Numbers Only)
           </div>
         </div>
-        <div class="form-group">
-          <label>Installment</label> <span> * </span>
-          <input type="number" id="product-price" class="form-control" />
-          <div class="alert alert-danger d-none" id="PPriceAlert">
-            Product Price must be in range 100 : 10,000 (Numbers Only)
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Total Price</label> <span> * </span>
+              <input type="number" id="total-price" class="form-control" />
+              <div class="alert alert-danger d-none" id="PPriceAlert">
+                Product Price must be in range 100 : 10,000 (Numbers Only)
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label>Discount</label> <span> * </span>
-          <input type="number" id="product-price" class="form-control" />
-          <div class="alert alert-danger d-none" id="PPriceAlert">
-            Product Price must be in range 100 : 10,000 (Numbers Only)
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Discount</label> <span> * </span>
+              <input type="number" id="product-price" class="form-control" />
+              <div class="alert alert-danger d-none" id="PPriceAlert">
+                Product Price must be in range 100 : 10,000 (Numbers Only)
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label>currency</label> <span> * </span>
+            <select id="currency-option" name="currency" class="form-control">
+              <option value="EGP">EGP</option>
+              <option value="Dollar">Dollar</option>
+            </select>
           </div>
         </div>
       </div>

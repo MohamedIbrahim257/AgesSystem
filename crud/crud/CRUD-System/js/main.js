@@ -508,10 +508,12 @@ var myArry = []
 var ourService = document.getElementById("service-input");
 var selectValue = document.getElementById("Service-option");
 var confirmBtn = document.querySelector(".confirm-button");
+var totalPrice = document.getElementById("total-price")
 function addService(){
   var ourServe = {
     serve : ourService.value ,
-    valueServe : selectValue.value
+    valueServe : selectValue.value,
+    totalPrice : totalPrice.value
   }
   
   myArry.push(ourServe);
@@ -527,11 +529,16 @@ function displayService() {
   var newService = "";
 
   for (var i = 0; i < myArry.length; i++) {
-    newService += `<div>
-                    <p>${i}</p>
-                    <p>${myArry[i].serve}</p>
-                    <p>${myArry[i].valueServe}</p>
-                </div>`;
+    newService += `<table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">${i}</th>
+        <td>${myArry[i].serve}</td>
+        <td>${myArry[i].valueServe}</td>
+        <td>${myArry[i].totalPrice}</td>
+      </tr>
+    </tbody>
+  </table>`;
   }
   document.querySelector(".select-value").innerHTML = newService;
 };

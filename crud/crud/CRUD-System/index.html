@@ -636,16 +636,25 @@
           <label>Service</label> <span> * </span>
            <div class="row">
             <div class="col-md-6">
-              <select id="Degree" name="Degree" class="form-control">
-                <option value="Bachelor">Office Expensise</option>
-                <option value="Master">Translation</option>
+              <select id="Service-option" name="Degree" class="form-control">
+                <option value="Office Expensise">Office Expensise</option>
+                <option value="Translation">Translation</option>
                 <option value="PhD"></option>
                 <option value="Vocational Education">Vocational Education تعليم مهني</option>
               </select>
+              <div class="py-2">
+                <button class="btn btn-outline-info confirm-button" >Confirm</button>
+              </div>
+    
             </div>
             <div class="col-md-6">
-              <input type="text" id="product-category" class="form-control" />
+              <input id="service-input" type="text" id="Degree" class="form-control" />
+              <div class="py-2 d-flex" >
+                <p class="yalla px-2"></p>
+                <p class="select-value px-2"></p>
+              </div>
             </div>
+
            </div>
           <div class="alert alert-danger d-none" id="PPriceAlert">
             Product Price must be in range 100 : 10,000 (Numbers Only)

@@ -1,24 +1,24 @@
 var productName = document.getElementById("student-name"),
-    phoneNumber = document.getElementById("phone-number"),
-    ageNumber = document.getElementById("age-number"),
-    city = document.getElementById("city"),
-    email = document.getElementById("email"),
-    ParentName = document.getElementById("Parent-name"),
-    parentPhone= document.getElementById("parentPhone"),
-    addBtn = document.getElementById("add-btn"),
-    emptyAlert = document.getElementById("empty-input-alert"),
-    inputs = document.getElementsByClassName("form-control"),
-    searchText = document.getElementById("search-text"),
-    displayTableHref = document.getElementById("display-table-href"),
-    PNameAlert = document.getElementById("PNameAlert"),
-    PAgeAlert = document.getElementById("PAgeAlert"),
-    PPhoneAlert = document.getElementById("PPhoneAlert"),
-    PCityAlert = document.getElementById("PCity-Alert"),
-    PParentAlert = document.getElementById("PParentAlert"),
-    PParentPhoneAlert = document.getElementById("PParentPhoneAlert"),
-    logOutBtn = document.getElementById("logOutBtn"),
-    productTable = [],
-    currentIndex;
+  phoneNumber = document.getElementById("phone-number"),
+  ageNumber = document.getElementById("age-number"),
+  city = document.getElementById("city"),
+  email = document.getElementById("email"),
+  ParentName = document.getElementById("Parent-name"),
+  parentPhone = document.getElementById("parentPhone"),
+  addBtn = document.getElementById("add-btn"),
+  emptyAlert = document.getElementById("empty-input-alert"),
+  inputs = document.getElementsByClassName("form-control"),
+  searchText = document.getElementById("search-text"),
+  displayTableHref = document.getElementById("display-table-href"),
+  PNameAlert = document.getElementById("PNameAlert"),
+  PAgeAlert = document.getElementById("PAgeAlert"),
+  PPhoneAlert = document.getElementById("PPhoneAlert"),
+  PCityAlert = document.getElementById("PCity-Alert"),
+  PParentAlert = document.getElementById("PParentAlert"),
+  PParentPhoneAlert = document.getElementById("PParentPhoneAlert"),
+  logOutBtn = document.getElementById("logOutBtn"),
+  productTable = [],
+  currentIndex;
 
 
 //Update Table After Refresh -- from storage:
@@ -27,7 +27,7 @@ if (localStorage.getItem("ProductsList") == null) {
   productTable = [];
 
 } else {
-  
+
   productTable = JSON.parse(localStorage.getItem("ProductsList"));
   displayProduct();
 };
@@ -36,33 +36,33 @@ if (localStorage.getItem("ProductsList") == null) {
 //Add New Product Function:
 addBtn.onclick = function () {
 
-  if(
-    productName.value == "" || 
-    phoneNumber.value == "" || 
-    ageNumber.value == "" || 
+  if (
+    productName.value == "" ||
+    phoneNumber.value == "" ||
+    ageNumber.value == "" ||
     city.value == "" ||
     email.value == "" ||
     ParentName.value == "" ||
     parentPhone.value == ""
-    
-  
-    ) {
+
+
+  ) {
 
     emptyAlert.innerHTML = "Please Fill In Required Info and Try Again!";
     displayTableHref.removeAttribute("href");
 
-  } else if(addBtn.innerHTML == "Add Product") {
-      
-        addProduct();
-        displayTableHref.setAttribute("href", "#display-table-href");
-        emptyAlert.innerHTML = "";
+  } else if (addBtn.innerHTML == "Add Product") {
+
+    addProduct();
+    displayTableHref.setAttribute("href", "#display-table-href");
+    emptyAlert.innerHTML = "";
 
   } else {
-        
-          submitEditProduct(currentIndex);
-          displayTableHref.setAttribute("href", "#display-table-href");
-          emptyAlert.innerHTML = "";
-       }
+
+    submitEditProduct(currentIndex);
+    displayTableHref.setAttribute("href", "#display-table-href");
+    emptyAlert.innerHTML = "";
+  }
 
   localStorage.setItem("ProductsList", JSON.stringify(productTable));
   displayProduct();
@@ -73,11 +73,11 @@ addBtn.onclick = function () {
 //Add Product to Array:
 function addProduct() {
 
-  if(
+  if (
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validatecity() == true && 
+    validatecity() == true &&
     validateEmail() == true &&
     validateParentName() == true &&
     validateParentNumber() == true
@@ -89,8 +89,8 @@ function addProduct() {
       phone: phoneNumber.value,
       age: ageNumber.value,
       city: city.value,
-      email : email.value,
-      ParentName : ParentName.value,
+      email: email.value,
+      ParentName: ParentName.value,
       parentPhone: parentPhone.value
 
     };
@@ -196,14 +196,14 @@ function updateProduct(index) {
 function submitEditProduct(currentIndex) {
   addBtn.innerHTML = "Add Product";
 
-  if(
+  if (
     validateProductName() == true &&
     validatephoneNumber() == true &&
     validateageNumber() == true &&
-    validatecity() == true && 
+    validatecity() == true &&
     validateEmail() == true &&
     validateParentName() == true &&
-    validateParentPhone () == true
+    validateParentPhone() == true
   ) {
     productTable[currentIndex].name = productName.value;
     productTable[currentIndex].phone = phoneNumber.value;
@@ -256,16 +256,16 @@ function validateProductName() {
   var regex = /^[A-Z][a-z A-z 0-9]{2,}$/;
 
   if (regex.test(productName.value) == true) {
-  
-      productName.classList.add("is-valid");
-      productName.classList.remove("is-invalid");
 
-      PNameAlert.classList.add("d-none");
-      PNameAlert.classList.remove("d-block");
+    productName.classList.add("is-valid");
+    productName.classList.remove("is-invalid");
 
-      addBtn.disabled = false;
+    PNameAlert.classList.add("d-none");
+    PNameAlert.classList.remove("d-block");
 
-      return true; 
+    addBtn.disabled = false;
+
+    return true;
 
   } else {
     productName.classList.add("is-invalid");
@@ -283,21 +283,19 @@ function validateProductName() {
 //Check Duplicated Product Name
 function checkDuplicatedNames() {
 
-  for(var i = 0; i < productTable.length; i++)
-      {
-        if(productName.value == productTable[i].name) 
-        {
-          productName.classList.add("is-invalid");
-          productName.classList.remove("is-valid");
+  for (var i = 0; i < productTable.length; i++) {
+    if (productName.value == productTable[i].name) {
+      productName.classList.add("is-invalid");
+      productName.classList.remove("is-valid");
 
-          PNameAlert.classList.add("d-block");
-          PNameAlert.classList.remove("d-none");
+      PNameAlert.classList.add("d-block");
+      PNameAlert.classList.remove("d-none");
 
-          PNameAlert.innerHTML = "Product Name Already Exists";
+      PNameAlert.innerHTML = "Product Name Already Exists";
 
-          addBtn.disabled = true;
-        } 
-      }
+      addBtn.disabled = true;
+    }
+  }
 };
 
 productName.addEventListener("keyup", validateProductName);
@@ -505,14 +503,49 @@ parentPhone.addEventListener("keyup", validateParentPhone);
 
 
 
+
+var myArry = []
+var ourService = document.getElementById("service-input");
+var selectValue = document.getElementById("Service-option");
+var confirmBtn = document.querySelector(".confirm-button");
+function addService(){
+  var ourServe = {
+    serve : ourService.value ,
+    valueServe : selectValue.value
+  }
+  
+  myArry.push(ourServe);
+}
+
+
+confirmBtn.addEventListener("click", function () {
+  addService()
+  displayService()
+})
+
+function displayService() {
+  var newService = "";
+
+  for (var i = 0; i < myArry.length; i++) {
+    newService += `<div>
+                    <p>${i}</p>
+                    <p>${myArry[i].serve}</p>
+                    <p>${myArry[i].valueServe}</p>
+                </div>`;
+  }
+  document.querySelector(".select-value").innerHTML = newService;
+};
+
+
+
 function logOut() {
   logOutBtn.setAttribute("href", "/login.html");
   // welcomeMsg.innerHTML = ""; 
 }
 
 
-document.body.addEventListener("contextmenu",function(e){
-e.preventDefault()
+document.body.addEventListener("contextmenu", function (e) {
+  e.preventDefault()
 })
 
 

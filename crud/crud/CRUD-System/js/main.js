@@ -437,7 +437,7 @@ email.addEventListener("keyup", validateEmail);
 
 function validateParentName() {
 
-  var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  var regex = /^[A-Z][a-z A-z 0-9]{2,}$/;
 
   if (regex.test(ParentName.value) == true) {
 
@@ -473,7 +473,7 @@ function validateParentPhone() {
 
   var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-  if (regex.test(ParentName.value) == true) {
+  if (regex.test(parentPhone.value) == true) {
 
     parentPhone.classList.add("is-valid");
     parentPhone.classList.remove("is-invalid");
@@ -508,14 +508,15 @@ var myArry = []
 var ourService = document.getElementById("service-input");
 var selectValue = document.getElementById("Service-option");
 var confirmBtn = document.querySelector(".confirm-button");
-var totalPrice = document.getElementById("total-price")
+var totalPrice = document.getElementById("total-price")  ;
+
 function addService(){
+  var totalAmount = Number(totalPrice.value - ourService.value) ;
   var ourServe = {
     serve : ourService.value ,
     valueServe : selectValue.value,
-    totalPrice : totalPrice.value
+    totalPrice : totalAmount
   }
-  
   myArry.push(ourServe);
 }
 
@@ -529,16 +530,14 @@ function displayService() {
   var newService = "";
 
   for (var i = 0; i < myArry.length; i++) {
-    newService += `<table class="table">
-    <tbody>
-      <tr>
+    newService += `
+         <tr>
         <th scope="row">${i}</th>
         <td>${myArry[i].serve}</td>
         <td>${myArry[i].valueServe}</td>
         <td>${myArry[i].totalPrice}</td>
-      </tr>
-    </tbody>
-  </table>`;
+        </tr>
+ `;
   }
   document.querySelector(".select-value").innerHTML = newService;
 };

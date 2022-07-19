@@ -513,7 +513,7 @@ var diposite = document.getElementById("deposite");
 
 function addService() {
   var totalAmount = Number(ourService.value - totalPrice.value);
-  var grossTotal = Number(diposite.value - totalPrice.value)
+  var grossTotal = Number(totalAmount - diposite.value )
   var ourServe = {
     serve: ourService.value,
     valueServe: selectValue.value,

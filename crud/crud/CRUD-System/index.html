@@ -649,9 +649,10 @@
   <section id="our-service" class="crud-system w-75 mx-auto my-3 p-4 shadow rounded">
     <div class="container">
       <div class="form-group">
-        <label>Service</label> <span> * </span>
+
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-3">
+            <label>Service</label> <span> * </span>
             <select id="Service-option" name="Degree" class="form-control">
               <option value="Office Expensise">Office Expensise</option>
               <option value="Translation">Translation</option>
@@ -659,34 +660,49 @@
               <option value="Vocational Education">Vocational Education تعليم مهني</option>
             </select>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-3">
+            <label>Service Fees</label> <span> * </span>
             <input id="service-input" type="text" id="our-service" class="form-control" />
+            
           </div>
-
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Discount</label> <span> * </span>
+              <input type="number" id="total-price" class="form-control" />
+              <div class="alert alert-danger d-none" id="PPriceAlert">
+                Product Price must be in range 100 : 10,000 (Numbers Only)
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Diposite</label> <span> * </span>
+              <input type="number" id="deposite" class="form-control" />
+              <div class="alert alert-danger d-none" id="PPriceAlert">
+                Product Price must be in range 100 : 10,000 (Numbers Only)
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-3">
+            <div class="form-group">
+              <label>service Fees After Dis</label> <span> * </span>
+              <input type="number" id="total-price" class="form-control" />
+              <div class="alert alert-danger d-none" id="PPriceAlert">
+                Product Price must be in range 100 : 10,000 (Numbers Only)
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <div class="py-2">
+          <button class="btn btn-outline-info confirm-button">Confirm</button>
         </div>
         <div class="alert alert-danger d-none" id="PPriceAlert">
           Product Price must be in range 100 : 10,000 (Numbers Only)
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Total Price</label> <span> * </span>
-            <input type="number" id="total-price" class="form-control" />
-            <div class="alert alert-danger d-none" id="PPriceAlert">
-              Product Price must be in range 100 : 10,000 (Numbers Only)
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label>Discount</label> <span> * </span>
-            <input type="number" id="product-price" class="form-control" />
-            <div class="alert alert-danger d-none" id="PPriceAlert">
-              Product Price must be in range 100 : 10,000 (Numbers Only)
-            </div>
-          </div>
-        </div>
+
+
         <div class="col-md-4">
           <label>currency</label> <span> * </span>
           <select id="currency-option" name="currency" class="form-control">
@@ -704,9 +720,12 @@
           <thead class="text-center">
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Price</th>
+              <th scope="col">Service Fees</th>
               <th scope="col">Description</th>
-              <th scope="col">Total Price</th>
+              <th scope="col">Discount</th>
+              <th scope="col">Service Fees After Discount</th>
+              <th scope="col">Diposite</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody class="text-center select-value">

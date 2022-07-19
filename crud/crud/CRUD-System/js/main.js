@@ -501,21 +501,26 @@ function validateParentPhone() {
 parentPhone.addEventListener("keyup", validateParentPhone);
 
 
-
-
-
 var myArry = []
 var ourService = document.getElementById("service-input");
 var selectValue = document.getElementById("Service-option");
 var confirmBtn = document.querySelector(".confirm-button");
-var totalPrice = document.getElementById("total-price")  ;
+var totalPrice = document.getElementById("total-price");
+var diposite = document.getElementById("deposite");
 
-function addService(){
-  var totalAmount = Number(totalPrice.value - ourService.value) ;
+
+
+
+function addService() {
+  var totalAmount = Number(ourService.value - totalPrice.value);
+  var grossTotal = Number(diposite.value - totalPrice.value)
   var ourServe = {
-    serve : ourService.value ,
-    valueServe : selectValue.value,
-    totalPrice : totalAmount
+    serve: ourService.value,
+    valueServe: selectValue.value,
+    totalPrice: totalPrice.value,
+    totalAmount : totalAmount,
+    diposite : diposite.value,
+    grossTotal : grossTotal
   }
   myArry.push(ourServe);
 }
@@ -536,6 +541,9 @@ function displayService() {
         <td>${myArry[i].serve}</td>
         <td>${myArry[i].valueServe}</td>
         <td>${myArry[i].totalPrice}</td>
+        <td>${myArry[i].totalAmount}</td>
+        <td>${myArry[i].diposite}</td>
+        <td>${myArry[i].grossTotal}</td>
         </tr>
  `;
   }
